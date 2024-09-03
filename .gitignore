@@ -43,3 +43,4 @@ database.sql
 
 # output
 d-todo-2
+*.log
