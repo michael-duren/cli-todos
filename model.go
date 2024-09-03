@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"d-todo/database"
 
 	"github.com/charmbracelet/bubbles/key"
@@ -28,6 +29,7 @@ type model struct {
 	height   int
 
 	queries *database.Queries
+	context context.Context
 }
 
 var quitKeys = key.NewBinding(
@@ -35,11 +37,11 @@ var quitKeys = key.NewBinding(
 	key.WithHelp("", "press q to quit"),
 )
 
-func initialModel(q *database.Queries) model {
+func initialModel(q *database.Queries, ctx context.Context) model {
 	s := spinner.New()
 	s.Spinner = spinner.Dot
 	s.Style = lipgloss.NewStyle().Foreground(lipgloss.Color("205"))
-	return model{spinner: s, page: HomePage, queries: q}
+	return model{spinner: s, page: HomePage, queries: q, context: ctx}
 }
 
 func (m model) Init() tea.Cmd {

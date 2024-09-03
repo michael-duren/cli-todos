@@ -26,7 +26,7 @@ func main() {
 		cancel()
 	}()
 
-	db, err := sql.Open("sqlite3", "database.sql")
+	db, err := sql.Open("sqlite3", "database.db")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -36,7 +36,7 @@ func main() {
 	defer logger.Close()
 
 	q := database.New(db)
-	p := tea.NewProgram(initialModel(q), tea.WithAltScreen())
+	p := tea.NewProgram(initialModel(q, ctx), tea.WithAltScreen())
 
 	select {
 	case <-ctx.Done():

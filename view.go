@@ -20,6 +20,9 @@ func (m model) View() string {
 	// pages
 	switch m.page {
 	default:
-		return views.HomePage()
+		t, _ := m.queries.ListTodos(m.context)
+		return views.HomePage(&views.HomePageModel{
+			Todos: &t,
+		})
 	}
 }
