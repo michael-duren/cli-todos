@@ -36,9 +36,7 @@ query.sql.go
 .DS_Store
 
 # sqlc
-db.go
-models.go
-query.sql.go
+
 
 # personal
 database.sql
